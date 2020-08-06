@@ -28,7 +28,7 @@ module.exports = {
   },
   // lintOnSave: false
   // 删除预加载，真正做到路由的按需加载
-  // chainWebpack:(config) => { 
-  //   config.plugins.delete('prefetch')
-  // }
+  chainWebpack:(config) => { 
+    config.plugins.delete('prefetch')
+  }
 }
