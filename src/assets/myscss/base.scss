@@ -1,0 +1,72 @@
+@import './mixin';
+@import './config';
+
+input{
+  outline: none;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.container {
+  width: 1226px;
+  margin: 0 auto;
+}
+
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+
+.col1{
+  flex: 1;
+}
+.col2{
+  flex: 2;
+}
+.col3{
+  flex: 3;
+}
+
+.cl:after {
+  content: "";
+  display: block;
+  overflow:hidden;
+  visibility:hidden;
+  height: 0;
+  clear: both;
+}
+
+// 公共logo
+.header-logo {
+  height: 55px;
+  width: 55px;
+  background-color: $colorA;
+  overflow: hidden;
+  a {
+    display: inline-block;
+    height: 55px;
+    width: 110px;
+    transition: all 0.3s;
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 55px;
+      height: 55px;
+      background: url('/imgs/mi-logo.png') no-repeat center;
+      background-size: 55px;
+    }
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 55px;
+      height: 55px;
+      background: url('/imgs/mi-home.png') no-repeat center;
+      background-size: 55px;
+    }
+    &:hover {
+      margin-left: -55px;
+      transition: all 0.3s;
+    }
+  }
+}

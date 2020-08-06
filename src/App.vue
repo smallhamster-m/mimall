@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+
+  },
+  created() {
+    if (this.$cookie.get('userId')) { //当登录的时候才调用，没登录不调用
+      this.getUser()
+      this.getCartCount()
+    }
+  },
+  methods: {
+    ...mapActions(['saveUserName', 'saveCartCount']),
+    // 用户刷新页面后，vuex里的数据会丢失，为了能够继续显示用户名及购物车数量，需要重新拉取用户信息并保持到vuex
+    getUser() {
+      this.axios.get('/user').then((res = {}) => {
+        // 把用户信息保存到vuex中
+        // this.$store.state.username = res.username（不要直接修改state里面的东西）
+        // this.$store.dispatch('saveUserName', res.username)
+        this.saveUserName(res.username)
+      })
+    },
+    getCartCount() {
+      this.axios.get('/carts/products/sum').then((res = 0) => {
+        // 把购物车总数量保存到vuex中
+        // this.$store.dispatch('saveCartCount', res)
+        this.saveCartCount(res)
+      })
+    },
   }
 }
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+</script>
+<style lang='scss'>
+@import 'assets/myscss/reset';
 </style>
