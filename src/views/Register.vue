@@ -11,7 +11,7 @@
             <input type="text" placeholder="请输入用户名" v-model="username" />
           </div>
           <div class="input">
-            <input type="text" placeholder="请输入密码" v-model="password" />
+            <input type="password" placeholder="请输入密码" v-model="password" />
           </div>
           <div class="btn " @click="register">立即注册</div>
           <div class="msg">
