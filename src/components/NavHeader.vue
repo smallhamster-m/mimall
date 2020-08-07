@@ -43,7 +43,6 @@
                       <img
                         :src="item.mainImage"
                         :alt="item.subtitle"
-                        @click="goDetail(item.id)"
                       />
                     </div>
                     <div class="pro-name">{{ item.name }}</div>
